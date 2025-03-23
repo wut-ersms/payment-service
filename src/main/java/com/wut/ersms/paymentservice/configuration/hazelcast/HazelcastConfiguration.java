@@ -1,4 +1,4 @@
-package com.wut.ersms.paymentservice.configuration;
+package com.wut.ersms.paymentservice.configuration.hazelcast;
 
 import com.hazelcast.config.Config;
 import com.hazelcast.config.MapConfig;

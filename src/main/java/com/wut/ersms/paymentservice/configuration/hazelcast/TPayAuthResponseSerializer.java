@@ -1,4 +1,4 @@
-package com.wut.ersms.paymentservice.configuration;
+package com.wut.ersms.paymentservice.configuration.hazelcast;
 
 import com.hazelcast.nio.ObjectDataInput;
 import com.hazelcast.nio.ObjectDataOutput;
