@@ -22,5 +22,7 @@ Or simply from Intellij. Run Application class (No build is needed).
 ## TPay docs
 - https://docs.tpay.com/  
 - https://docs-api.tpay.com/  
-- https://support.tpay.com/sprzedawca/srodowisko-testowe-sandbox
+- https://docs-api.tpay.com/pl/first-steps/environments/
 - https://panel.sandbox.tpay.com/
+- https://openapi.sandbox.tpay.com
+- https://support.tpay.com/sprzedawca/srodowisko-testowe-sandbox
