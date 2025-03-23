@@ -1,32 +1,44 @@
 package com.wut.ersms.paymentservice.auth;
 
+import com.hazelcast.map.IMap;
+import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatusCode;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
 @Slf4j
-@RestController
-@RequestMapping("/tpay")
+@Component
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 @PropertySource("classpath:secrets.properties")
-public class AuthController {
+public class AuthProvider {
+
+    private static final String TOKEN_KEY = "token";
 
     private final RestClient tpayRestClient;
+    private final IMap<String, TPayAuthResponse> authMap;
 
     @Value("${tpay.client.id}")
     private String clientId;
     @Value("${tpay.client.secret}")
     private String clientSecret;
 
-    @GetMapping("/auth")
-    public TPayAuthResponse getOAuthToken() {
+    public String getAccessToken() {
+        return Optional.ofNullable(authMap.get(TOKEN_KEY))
+                .orElseGet(this::getOAuthToken)
+                .getAccessToken();
+    }
+
+    private void put(TPayAuthResponse tPayAuthResponse) {
+        authMap.putIfAbsent(TOKEN_KEY, tPayAuthResponse, tPayAuthResponse.getExpiresIn(), TimeUnit.SECONDS);
+    }
+
+    private TPayAuthResponse getOAuthToken() {
         TPayAuthResponse authResponse = tpayRestClient.post()
                 .uri(uriBuilder -> uriBuilder
                         .path("/oauth/auth")
@@ -47,6 +59,7 @@ public class AuthController {
                         }))
                 .body(TPayAuthResponse.class);
         log.info("OAuth token response: {}", authResponse);
+        put(authResponse);
         return authResponse;
     }
 }

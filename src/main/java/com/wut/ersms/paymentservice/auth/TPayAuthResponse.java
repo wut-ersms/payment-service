@@ -5,10 +5,12 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.wut.ersms.paymentservice.configuration.UTCLocalDateTimeDeserializer;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
 @Getter
+@Builder
 @ToString
 @AllArgsConstructor
 public class TPayAuthResponse {
