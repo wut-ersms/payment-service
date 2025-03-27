@@ -6,6 +6,12 @@ https://sdkman.io/usage/
 sdk env
 ```
 
+### On Windows (not tested, not recommended)
+In Intellij in "Project Structure"
+- Set SDK to i.e. temurin-17
+- Set language level to java 17 LTS
+- Set JAVA_HOME env for jdk >= 17
+
 ## Commands
 ### Build app
 
@@ -26,7 +32,7 @@ https://bmuschko.github.io/gradle-docker-plugin/current/user-guide/#spring_boot_
 ```
 
 ## Swagger
-http://localhost:8080/swagger-ui/index.html
+http://localhost:8092/swagger-ui/index.html
 
 ### Annotations
 @Tag - use on class level to describe controller  
