@@ -6,18 +6,26 @@ https://sdkman.io/usage/
 sdk env
 ```
 
-
-## Build app
+## Commands
+### Build app
 
 ```
 ./gradlew clean build
 ```
 
-## Run app
+### Run app
 ```
 ./gradlew bootRun
 ```
 Or simply from Intellij. Run Application class (No build is needed).
+
+### Build Docker Image
+https://bmuschko.github.io/gradle-docker-plugin/current/user-guide/#spring_boot_application_plugin
+```
+./gradlew dockerBuildImage
+```
+
+## Swagger
 
 ## TPay docs
 - https://docs.tpay.com/  
