@@ -32,9 +32,6 @@ dependencies {
     implementation("com.hazelcast:hazelcast-all:4.2.8")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.6")
 
-    compileOnly("org.projectlombok:lombok")
-    annotationProcessor("org.projectlombok:lombok")
-
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.kafka:spring-kafka-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
