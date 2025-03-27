@@ -30,6 +30,7 @@ dependencies {
     implementation("org.springframework.kafka:spring-kafka")
     implementation("org.apache.httpcomponents.client5:httpclient5")
     implementation("com.hazelcast:hazelcast-all:4.2.8")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.6")
 
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")

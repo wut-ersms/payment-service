@@ -26,6 +26,12 @@ https://bmuschko.github.io/gradle-docker-plugin/current/user-guide/#spring_boot_
 ```
 
 ## Swagger
+http://localhost:8080/swagger-ui/index.html
+
+### Annotations
+@Tag - use on class level to describe controller  
+@Operation - use on method level to describe endpoint  
+@ApiResponse - use to define response codes
 
 ## TPay docs
 - https://docs.tpay.com/  
