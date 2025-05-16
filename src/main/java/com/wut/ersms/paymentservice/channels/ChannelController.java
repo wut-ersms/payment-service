@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,12 +27,12 @@ public class ChannelController {
             @ApiResponse(responseCode = "200", description = "successful operation")
     })
     @GetMapping("/all")
-    public String getAllChannels() {
+    public ResponseEntity<String> getAllChannels() {
         return tpayRestClient.get()
                 .uri("/transactions/channels")
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .header("Authorization", "Bearer " + authProvider.getAccessToken())
                 .retrieve()
-                .body(String.class);
+                .toEntity(String.class);
     }
 }

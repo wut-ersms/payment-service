@@ -4,6 +4,7 @@ import com.hazelcast.nio.ObjectDataInput;
 import com.hazelcast.nio.ObjectDataOutput;
 import com.hazelcast.nio.serialization.StreamSerializer;
 import com.wut.ersms.paymentservice.auth.TPayAuthResponse;
+import jakarta.annotation.Nonnull;
 import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -21,6 +22,7 @@ public class TPayAuthResponseSerializer implements StreamSerializer<TPayAuthResp
     }
 
     @Override
+    @Nonnull
     public TPayAuthResponse read(ObjectDataInput in) throws IOException {
         return TPayAuthResponse.builder()
                 .issuedAt(LocalDateTime.ofInstant(Instant.ofEpochSecond(in.readLong()), ZoneOffset.UTC))
