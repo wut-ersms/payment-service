@@ -6,6 +6,7 @@ import com.wut.ersms.paymentservice.transactions.model.PayerURLs;
 import com.wut.ersms.paymentservice.transactions.model.TransactionCallbacks;
 import com.wut.ersms.paymentservice.transactions.model.TransactionRequest;
 import com.wut.ersms.paymentservice.transactions.model.TransactionResponse;
+import com.wut.ersms.paymentservice.transactions.service.TransactionService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -31,6 +32,7 @@ public class TransactionController {
     @Value("${server.ip}")
     private String serverAddress;
 
+    private final TransactionService transactionService;
     private final RestClient tpayRestClient;
     private final AuthProvider authProvider;
 
@@ -64,10 +66,10 @@ public class TransactionController {
                 .retrieve()
                 .body(TransactionResponse.class);
 
+        transactionService.saveTransaction(transactionResponse);
+
         HttpHeaders headers = new HttpHeaders();
         headers.add("Location", transactionResponse.getTransactionPaymentUrl());
         return new ResponseEntity<>(headers, HttpStatus.FOUND);
-
-        //TODO save response to db
     }
 }
