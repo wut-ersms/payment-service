@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,9 +38,9 @@ public class TransactionController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "successful operation")
     })
-    @GetMapping("/new")
+    @PostMapping("/new")
     public ResponseEntity<Void> newTransaction(@RequestParam double amount, @RequestParam String description, @RequestParam String email,
-                                               @RequestParam String name) {
+                                               @RequestParam String name, @RequestParam String successPage, @RequestParam String errorPage) {
         var transactionRequest = TransactionRequest.builder()
                 .amount(amount)
                 .description(description)
@@ -50,8 +50,8 @@ public class TransactionController {
                         .build())
                 .callbacks(TransactionCallbacks.builder()
                         .payerURLs(PayerURLs.builder()
-                                .success(serverAddress + "/successPage")
-                                .error(serverAddress + "/errorPage")
+                                .success(successPage)
+                                .error(errorPage)
                                 .build())
                         .build())
                 .build();

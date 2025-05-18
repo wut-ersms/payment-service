@@ -1,7 +1,6 @@
 package com.wut.ersms.paymentservice.transactions.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.annotation.Nonnull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
