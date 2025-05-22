@@ -30,6 +30,22 @@ https://bmuschko.github.io/gradle-docker-plugin/current/user-guide/#spring_boot_
 ```
 ./gradlew dockerBuildImage
 ```
+### Versioning
+https://github.com/allegro/axion-release-plugin
+https://axion-release-plugin.readthedocs.io/en/latest/
+
+```
+./gradlew currentVersion
+```
+#### Patch Version
+```
+./gradlew release -Prelease.pushTagsOnly -Prelease.versionIncrementer=incrementPatch
+```
+#### Minor Version
+```
+./gradlew release -Prelease.pushTagsOnly -Prelease.versionIncrementer=incrementMinor
+```
+
 
 ## Swagger
 http://localhost:8092/swagger-ui/index.html
