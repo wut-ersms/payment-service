@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.wut.ersms"
-version = "0.0.1-SNAPSHOT"
+version = scmVersion.version
 
 java {
     toolchain {
@@ -42,4 +42,10 @@ dependencies {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+docker {
+    springBootApplication {
+        baseImage.set("eclipse-temurin:17-jdk-alpine")
+    }
 }
